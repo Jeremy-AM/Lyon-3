@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Testing offline form</title>
+    <!-- 
+    <link href="style.css" rel="stylesheet">
+    -->
+    <script>
+      window.onload = function() {
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register(
+              self.addEventListener('install', function(e) {
+                e.waitUntil(
+                  caches.open('video-store').then(function(cache) {
+                    return cache.addAll([
+                      '/Lyon-3/index.html',
+                    ]);
+                  })
+                );
+              });
+
+              self.addEventListener('fetch', function(e) {
+                console.log(e.request.url);
+                e.respondWith(
+                  caches.match(e.request).then(function(response) {
+                    return response || fetch(e.request);
+                  })
+                );
+              });
+            )
+            .then(function() { console.log('Service Worker Registered'); });
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Offline Form</h1>
+    </header>
+
+    <main>
+      <section>
+        <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>Jérémy Brunet - Automate Me 2020.</p>
+    </footer>
+  </body>
+</html>
