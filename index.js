@@ -4,7 +4,7 @@ window.onload = function() {
 
   if('serviceWorker' in navigator) {
     navigator.serviceWorker
-             .register('/Lyon-3/sw.js')
+             .register('https://jeremy-am.github.io/Lyon-3/sw.js')
              .then(function() { console.log('Service Worker Registered'); });
   }
 };
