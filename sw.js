@@ -2,10 +2,10 @@ self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('video-store').then(function(cache) {
      return cache.addAll([
-       '/',
-       '/index.html',
-       '/index.js',
-       '/style.css'
+       '/Lyon-3/',
+       '/Lyon-3/index.html',
+       '/Lyon-3/index.js',
+       '/Lyon-3/style.css'
      ]);
    })
  );
