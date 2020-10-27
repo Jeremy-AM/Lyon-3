@@ -3,51 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Testing offline form</title>
-    <style type="text/css">
-      html {
-         font-family: verdana;
-      }
-
-      body {
-        margin: 0 auto;
-        max-width: 800px;
-      }
-
-      header, footer {
-        font-family: Courier New;
-        background-color: green;
-        color: white;
-        line-height: 100px;
-        padding: 0 20px;
-      }
-
-      h2 {
-        margin: 10px 0;
-      }
-
-      button {
-        display: block;
-        margin-top: 10px;
-      }
-    </style>
-    <script defer>
-      window.onload = function() {
-
-        // Register service worker to control making site work offline
-
-        if('serviceWorker' in navigator) {
-          navigator.serviceWorker
-            .register('https://jeremy-am.github.io/Lyon-3/sw.js');
-            .then(function() { console.log('Service Worker Registered'); });
-        }
-      };
-    </script>
+    <style href="https://jeremy-am.github.io/Lyon-3/style.css" rel="stylesheet">
+    <script src="https://jeremy-am.github.io/Lyon-3/index.js" defer></script>
   </head>
   <body>
     <header>
       <h1>Offline Form</h1>
     </header>
-
+      
     <main>
       <section>
         <form>
