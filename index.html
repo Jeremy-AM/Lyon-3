@@ -3,8 +3,64 @@
   <head>
     <meta charset="utf-8">
     <title>Testing offline form</title>
-    <link href="https://jeremy-am.github.io/Lyon-3/style.css" rel="stylesheet">
-    <script src="https://jeremy-am.github.io/Lyon-3/index.js" defer></script>
+    <style type="text/css">
+      html {
+         font-family: verdana;
+      }
+
+      body {
+        margin: 0 auto;
+        max-width: 800px;
+      }
+
+      header, footer {
+        font-family: Courier New;
+        background-color: green;
+        color: white;
+        line-height: 100px;
+        padding: 0 20px;
+      }
+
+      h2 {
+        margin: 10px 0;
+      }
+
+      button {
+        display: block;
+        margin-top: 10px;
+      }
+    </style>
+    <script defer>
+      window.onload = function() {
+        
+        self.addEventListener('install', function(e) {
+          e.waitUntil(
+          caches.open('video-store').then(function(cache) {
+            return cache.addAll([
+              'https://hook.integromat.com/6v3vao6rqdye22mnfqvcjwa6ulyljm3p'
+            ]);
+          })
+          );
+        });
+
+        self.addEventListener('fetch', function(e) {
+          console.log(e.request.url);
+          e.respondWith(
+            caches.match(e.request).then(function(response) {
+              return response || fetch(e.request);
+            })
+          );
+        });
+
+        // Register service worker to control making site work offline
+
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register()
+            .then(function() { console.log('Service Worker Registered'); });
+        }
+      };
+    </script>
   </head>
   <body>
     <header>
