@@ -32,31 +32,12 @@
     </style>
     <script defer>
       window.onload = function() {
-        
-        self.addEventListener('install', function(e) {
-          e.waitUntil(
-          caches.open('video-store').then(function(cache) {
-            return cache.addAll([
-              'https://hook.integromat.com/6v3vao6rqdye22mnfqvcjwa6ulyljm3p'
-            ]);
-          })
-          );
-        });
-
-        self.addEventListener('fetch', function(e) {
-          console.log(e.request.url);
-          e.respondWith(
-            caches.match(e.request).then(function(response) {
-              return response || fetch(e.request);
-            })
-          );
-        });
 
         // Register service worker to control making site work offline
 
         if('serviceWorker' in navigator) {
           navigator.serviceWorker
-            .register('/')
+            .register('https://jeremy-am.github.io/Lyon-3/sw.js')
             .then(function() { console.log('Service Worker Registered'); });
         }
       };
